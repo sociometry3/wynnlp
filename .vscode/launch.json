@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: run_predicate_classification.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "run_predicate_classification.py",
+            "console": "integratedTerminal",
+            "args": "--task_name=AVA  --do_train=true --do_eval=false --data_dir=bin/output_data --vocab_file=multi_cased_L-12_H-768_A-12/vocab.txt --bert_config_file=multi_cased_L-12_H-768_A-12/bert_config.json --init_checkpoint=multi_cased_L-12_H-768_A-12/bert_model.ckpt --max_seq_length=128 --train_batch_size=32 --learning_rate=2e-5 --num_train_epochs=6.0 --output_dir=./output/predicate_classification_model/epochs6/"
+        },
+        {
+            "name": "Python Debugger: server.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "server.py",
+            "console": "integratedTerminal",
+            "args": ""
+        }
+    ]
+}

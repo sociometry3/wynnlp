@@ -1,0 +1,68 @@
+ python bin\data_prepare.py     
+
+python run_predicate_classification.py --task_name=AVA  --do_train=true --do_eval=false --data_dir=bin/output_data --vocab_file=multi_cased_L-12_H-768_A-12/vocab.txt --bert_config_file=multi_cased_L-12_H-768_A-12/bert_config.json --init_checkpoint=multi_cased_L-12_H-768_A-12/bert_model.ckpt --max_seq_length=128 --train_batch_size=32 --learning_rate=2e-5 --num_train_epochs=6.0 --output_dir=./output/predicate_classification_model/epochs6/
+
+python run_predicate_classification.py 
+--task_name=AVA 
+--do_train=true 
+--do_eval=false 
+--data_dir=bin/output_data 
+--vocab_file=chinese_L-12_H-768_A-12/vocab.txt 
+--bert_config_file=chinese_L-12_H-768_A-12/bert_config.json 
+--init_checkpoint=chinese_L-12_H-768_A-12/bert_model.ckpt 
+--max_seq_length=128 
+--train_batch_size=32 
+--learning_rate=2e-5 
+--num_train_epochs=6.0 
+--output_dir=./output/predicate_classification_model/epochs6/
+
+python bin/labeling_data_prepare.py
+
+python run_sequnce_labeling.py --task_name=AVA --do_train=true --do_eval=false --data_dir=bin/output_labeling_data  --vocab_file=multi_cased_L-12_H-768_A-12/vocab.txt --bert_config_file=multi_cased_L-12_H-768_A-12/bert_config.json --init_checkpoint=multi_cased_L-12_H-768_A-12/bert_model.ckpt --max_seq_length=128 --train_batch_size=32 --learning_rate=2e-5 --num_train_epochs=9.0 --output_dir=./output/sequnce_labeling_model/epochs9/
+
+python run_sequnce_labeling.py 
+--task_name=AVA 
+--do_train=true 
+--do_eval=false 
+--data_dir=bin/output_labeling_data  
+--vocab_file=chinese_L-12_H-768_A-12/vocab.txt 
+--bert_config_file=chinese_L-12_H-768_A-12/bert_config.json 
+--init_checkpoint=chinese_L-12_H-768_A-12/bert_model.ckpt 
+--max_seq_length=128 
+--train_batch_size=32 
+--learning_rate=2e-5 
+--num_train_epochs=9.0 
+--output_dir=./output/sequnce_labeling_model/epochs9/
+
+#预测
+
+python run_predicate_classification.py  --task_name=AVA  --do_predict=true  --data_dir=bin/output_data   --vocab_file=chinese_L-12_H-768_A-12/vocab.txt  --bert_config_file=chinese_L-12_H-768_A-12/bert_config.json  --init_checkpoint=output/predicate_classification_model/epochs6/model.ckpt-487  --max_seq_length=128  --output_dir=./output/predicate_infer_out/epochs6/ckpt487
+
+python run_predicate_classification.py  --task_name=AVA  --do_predict=true  --data_dir=bin/output_data   --vocab_file=chinese_L-12_H-768_A-12/vocab.txt  --bert_config_file=chinese_L-12_H-768_A-12/bert_config.json  --init_checkpoint=output/predicate_classification_model/epochs6/model.ckpt-168  --max_seq_length=128  --output_dir=./output/predicate_infer_out/epochs6/ckpt168
+python run_predicate_classification.py
+  --task_name=AVA
+  --do_predict=true
+  --data_dir=bin/output_data 
+  --vocab_file=chinese_L-12_H-768_A-12/vocab.txt
+  --bert_config_file=chinese_L-12_H-768_A-12/bert_config.json
+  --init_checkpoint=output/predicate_classification_model/epochs6/model.ckpt-487
+  --max_seq_length=128
+  --output_dir=./output/predicate_infer_out/epochs6/ckpt487
+
+python bin/prepare_data_for_labeling_infer.py
+
+python run_sequnce_labeling.py --task_name=AVA --do_predict=true --data_dir=bin/sequence_labeling_data --vocab_file=chinese_L-12_H-768_A-12/vocab.txt --bert_config_file=chinese_L-12_H-768_A-12/bert_config.json --init_checkpoint=output/sequnce_labeling_model/epochs9/model.ckpt-1237 --max_seq_length=128 --output_dir=./output/sequnce_infer_out/epochs9/ckpt1237
+
+python run_sequnce_labeling.py --task_name=AVA --do_predict=true --data_dir=bin/sequence_labeling_data --vocab_file=chinese_L-12_H-768_A-12/vocab.txt --bert_config_file=chinese_L-12_H-768_A-12/bert_config.json --init_checkpoint=output/sequnce_labeling_model/epochs9/model.ckpt-623 --max_seq_length=128 --output_dir=./output/sequnce_infer_out/epochs9/ckpt623
+
+python run_sequnce_labeling.py
+  --task_name=AVA
+  --do_predict=true
+  --data_dir=bin/sequence_labeling_data
+  --vocab_file=chinese_L-12_H-768_A-12/vocab.txt
+  --bert_config_file=chinese_L-12_H-768_A-12/bert_config.json
+  --init_checkpoint=output/sequnce_labeling_model/epochs9/model.ckpt-1237
+  --max_seq_length=128
+  --output_dir=./output/sequnce_infer_out/epochs9/ckpt1237
+
+  python produce_submit_json_file.py

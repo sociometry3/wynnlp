@@ -1,0 +1,14 @@
+.git
+node_modules/
+bin/output_data/*
+bin/output_labeling_data/*
+bin/sequence_labeling_data/*
+output_bak/
+output/final_text_spo_list_result
+output/predicate_infer_out
+output/sequnce_infer_out
+output/result_temp
+output/predicate_classification_model/epochs6
+output/sequnce_labeling_model/epochs9
+output/predicate_classification_model/epochs61
+output/sequnce_labeling_model/epochs91
